@@ -1,0 +1,21 @@
+{
+    "name": "jtgrimes/laravelodbc",
+    "description": "",
+    "authors": [
+        {
+            "name": "J.T. Grimes",
+            "email": "jtgrimes@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "illuminate/support": "4.0.x",
+        "jtgrimes/Extradb": "*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Jtgrimes\\Laravelodbc": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
