@@ -2,6 +2,7 @@
 
 use Illuminate\Support\ServiceProvider;
 
+
 class ODBCServiceProvider extends ServiceProvider {
 
 	/**
@@ -18,9 +19,18 @@ class ODBCServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->package('jtgrimes/laravelodbc');
-        $factory = $this->app['db.factory'];
-        $factory->add('odbc',array("Connector"=>"jtgrimes\Laravelodbc\ODBCConnector","Connection"=>"jtgrimes\Laravelodbc\ODBCConnection"));
+        $factory = $this->app['db'];
+        $factory->extend('odbc',function($config) {
+			if ( ! isset($config['prefix']))
+			{
+				$config['prefix'] = '';
+			}
+
+            $connector =  new ODBCConnector();
+			$pdo = $connector->connect($config);
+            return new ODBCConnection($pdo, $config['database'], $config['prefix']);
+
+		});
 	}
 
 	/**
