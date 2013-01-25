@@ -16,7 +16,7 @@
     },
     "autoload": {
         "psr-0": {
-            "Jtgrimes\\Laravelodbc": "src/"
+            "jtgrimes\\Laravelodbc": "src/"
         }
     },
     "minimum-stability": "dev"
