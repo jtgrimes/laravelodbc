@@ -11,6 +11,14 @@ class ODBCConnection extends Connection {
 	 */
 	protected function getDefaultQueryGrammar()
 	{
+		$connection = \Config::get('database.default');
+
+        if (\Config::has('database.connections.' . $connection . '.grammar')) {
+            $grammar = \Config::get('database.connections.' . $connection . '.grammar');
+
+            return $this->withTablePrefix(new $grammar);
+        }
+
         return $this->withTablePrefix(new ODBCQueryGrammar);
 	}
 
